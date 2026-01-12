@@ -37,7 +37,7 @@ class ProfileHeaderWidget extends StatelessWidget {
               ),
               child: const CircleAvatar(
                 radius: Dimensions.radiusCircularLarge,
-                backgroundImage: NetworkImage('https://via.placeholder.com/150'),
+                backgroundImage: AssetImage('assets/images/profile.jpeg'),
               ),
             ),
           ),

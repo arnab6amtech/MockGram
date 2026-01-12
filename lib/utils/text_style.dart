@@ -8,7 +8,7 @@ const instagramLogoTextStyle = TextStyle(
 
 const instagramLogoSmallTextStyle = TextStyle(
   fontFamily: 'SF Pro Text',
-  fontSize: 32,
+  fontSize: 28,
   fontWeight: FontWeight.w400,
 );
 

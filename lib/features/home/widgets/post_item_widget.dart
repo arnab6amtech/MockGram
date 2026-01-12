@@ -52,7 +52,7 @@ class _PostItemWidgetState extends State<PostItemWidget> {
                   ),
                   child: const CircleAvatar(
                     radius: Dimensions.radiusLarge,
-                    backgroundImage: NetworkImage('https://via.placeholder.com/150'),
+                    backgroundImage: AssetImage('assets/images/profile.jpeg'),
                   ),
                 ),
               ),
@@ -106,7 +106,7 @@ class _PostItemWidgetState extends State<PostItemWidget> {
               child: SizedBox(
                 width: double.infinity,
                 height: 400,
-                child: Image.network(
+                child: Image.asset(
                   post.postImages[_currentImageIndex],
                   fit: BoxFit.cover,
                 ),
@@ -173,26 +173,24 @@ class _PostItemWidgetState extends State<PostItemWidget> {
             ],
           ),
         ),
-
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeMedium1),
           child: RichText(
             text: TextSpan(
-              style: likesTextStyle,
+              style: likesTextStyle.copyWith(color:Colors.black),
               children: [
                 const TextSpan(text: 'Liked by '),
-                TextSpan(text: post.likedBy, style: likesCountTextStyle),
+                TextSpan(text: post.likedBy, style: likesTextStyle.copyWith(color:Colors.black),),
                 const TextSpan(text: ' and '),
                 TextSpan(
                   text:
                       '${post.likes.toString().replaceAllMapped(RegExp(r"(\d{1,3})(?=(\d{3})+(?!\d))"), (m) => "${m[1]},")} others',
-                  style: likesCountTextStyle,
+                  style: likesTextStyle.copyWith(color:Colors.black),
                 ),
               ],
             ),
           ),
         ),
-
         Padding(
           padding: const EdgeInsets.symmetric(
             horizontal: Dimensions.paddingSizeMedium1,
@@ -200,15 +198,14 @@ class _PostItemWidgetState extends State<PostItemWidget> {
           ),
           child: RichText(
             text: TextSpan(
-              style: captionTextStyle,
+              style: captionTextStyle.copyWith(color: Colors.black),
               children: [
-                TextSpan(text: post.username, style: captionUsernameTextStyle),
+                TextSpan(text: post.username, style: captionUsernameTextStyle.copyWith(color: Colors.black)),
                 TextSpan(text: ' ${post.caption}'),
               ],
             ),
           ),
         ),
-
         const SizedBox(height: 12),
       ],
     );

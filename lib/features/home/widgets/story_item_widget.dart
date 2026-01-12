@@ -13,41 +13,54 @@ class StoryItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: Dimensions.paddingSizeSmall2),
+      padding: const EdgeInsets.symmetric(
+        horizontal: Dimensions.paddingSizeSmall2,
+      ),
       child: Column(
         children: [
           Stack(
             children: [
               Container(
-                padding: const EdgeInsets.all(Dimensions.paddingSizeExtraSmall2),
+                padding: const EdgeInsets.all(
+                  Dimensions.paddingSizeExtraSmall2,
+                ),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
+
                   gradient: story.isOwn
                       ? null
                       : const LinearGradient(
-                          colors: [
-                            Color(0xFFFBAA47),
-                            Color(0xFFD91A46),
-                            Color(0xFFA60F93),
-                          ],
-                          begin: Alignment.topRight,
-                          end: Alignment.bottomLeft,
-                        ),
+                    colors: [
+                      Color(0xFFFBAA47),
+                      Color(0xFFD91A46),
+                      Color(0xFFA60F93),
+                    ],
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                  ),
+
                   border: story.isOwn
-                      ? Border.all(color: Colors.grey, width: Dimensions.paddingSizeExtraSmall)
+                      ? Border.all(
+                    color: theme.dividerColor,
+                    width: Dimensions.paddingSizeExtraSmall,
+                  )
                       : null,
                 ),
                 child: Container(
-                  padding: const EdgeInsets.all(Dimensions.paddingSizeExtraSmall),
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
+                  padding: const EdgeInsets.all(
+                    Dimensions.paddingSizeExtraSmall,
+                  ),
+                  decoration: BoxDecoration(
+                    color: theme.colorScheme.surface,
                     shape: BoxShape.circle,
                   ),
-                  child: const CircleAvatar(
+                  child: CircleAvatar(
                     radius: Dimensions.radiusCircular,
-                    backgroundImage: NetworkImage(
-                      'https://via.placeholder.com/150',
+                    backgroundImage: AssetImage(
+                      story.userImage,
                     ),
                   ),
                 ),
@@ -58,18 +71,20 @@ class StoryItemWidget extends StatelessWidget {
                   bottom: 0,
                   right: 0,
                   child: Container(
-                    padding: const EdgeInsets.all(Dimensions.paddingSizeExtraSmall),
+                    padding: const EdgeInsets.all(
+                      Dimensions.paddingSizeExtraSmall,
+                    ),
                     decoration: BoxDecoration(
-                      color: Colors.white,
+                      color: theme.colorScheme.surface,
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: Colors.white,
+                        color: theme.colorScheme.surface,
                         width: Dimensions.borderWidthDefault,
                       ),
                     ),
-                    child: const Icon(
+                    child: Icon(
                       Icons.add_circle,
-                      color: Color(0xFF3797F0),
+                      color: theme.colorScheme.primary,
                       size: Dimensions.iconSizeMedium,
                     ),
                   ),
@@ -83,9 +98,13 @@ class StoryItemWidget extends StatelessWidget {
             width: 70,
             child: Text(
               story.username,
-              style: storyUsernameTextStyle,
               textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,
+              style: storyUsernameTextStyle.copyWith(
+                color: theme.colorScheme.onSurface,
+                fontWeight:
+                story.isOwn ? FontWeight.w600 : FontWeight.w400,
+              ),
             ),
           ),
         ],

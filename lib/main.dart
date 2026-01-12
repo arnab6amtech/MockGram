@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:mockgram/features/auth/views/login_screen.dart';
-import 'package:mockgram/features/profile/views/profile_screen.dart';
+import 'package:get/get.dart';
+import 'package:mockgram/helpers/di_container.dart';
 import 'package:mockgram/theme/app_theme.dart';
 
-void main() {
+import 'helpers/route_helper.dart';
+
+void main() async {
+  // Get.put(StoryController());
+  // Get.put(PostController());
+  // Get.put(ProfileController());
+  await init();
   runApp(const MyApp());
 }
 
@@ -12,10 +18,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       theme: appTheme,
-      home: LoginScreen()
+      initialRoute: RouteHelper.getHomeScreen(),
+      getPages: RouteHelper.routes,
     );
   }
 }

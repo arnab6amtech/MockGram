@@ -30,7 +30,7 @@ class EditProfileButtonWidget extends StatelessWidget {
           ),
           child: Text(
             'Edit Profile',
-            style: buttonTextStyle,
+            style: buttonTextStyle.copyWith(color: Colors.black),
           ),
         ),
       ),

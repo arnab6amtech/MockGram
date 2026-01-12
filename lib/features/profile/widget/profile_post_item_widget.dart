@@ -12,7 +12,7 @@ class ProfilePostItemWidget extends StatelessWidget {
     return Stack(
       fit: StackFit.expand,
       children: [
-        Image.network(post.imageUrl, fit: BoxFit.cover),
+        Image.asset(post.imageUrl, fit: BoxFit.cover),
         if (post.hasMultipleImages)
           const Positioned(
             top: 8,

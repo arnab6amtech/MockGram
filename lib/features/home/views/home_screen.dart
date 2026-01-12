@@ -1,148 +1,144 @@
 import 'package:flutter/material.dart';
-import 'package:mockgram/common/models/post_model.dart';
-import 'package:mockgram/common/models/story_model.dart';
+import 'package:get/get.dart';
+import 'package:mockgram/features/home/controllers/post_controller.dart';
+import 'package:mockgram/features/home/controllers/story_controller.dart';
 import 'package:mockgram/features/home/widgets/post_item_widget.dart';
 import 'package:mockgram/features/home/widgets/story_item_widget.dart';
+import 'package:mockgram/helpers/route_helper.dart';
+import 'package:mockgram/utils/dimensions.dart';
 import 'package:mockgram/utils/text_style.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
-
-  final List<StoryModel> stories = [
-    StoryModel(username: 'Your Story', userImage: 'assets/user.jpg', isOwn: true),
-    StoryModel(username: 'karennne', userImage: 'assets/karen.jpg'),
-    StoryModel(username: 'zackjohn', userImage: 'assets/zack.jpg'),
-    StoryModel(username: 'kieran_d', userImage: 'assets/kieran.jpg'),
-    StoryModel(username: 'craig_w', userImage: 'assets/craig.jpg'),
-  ];
-
-  final List<PostModel> posts = [
-    PostModel(
-      username: 'joshua_l',
-      userImage: 'assets/joshua.jpg',
-      location: 'Tokyo, Japan',
-      postImages: [
-        'assets/tokyo1.jpg',
-        'assets/tokyo2.jpg',
-        'assets/tokyo3.jpg',
-      ],
-      likes: 44686,
-      likedBy: 'craig_love',
-      caption: 'The game in Japan was amazing and I want to share some photos',
-      isVerified: true,
-      timestamp: DateTime.now().subtract(const Duration(hours: 2)),
-    ),
-  ];
-
-  @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return Scaffold(
+      backgroundColor: theme.colorScheme.surface,
+
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: theme.colorScheme.surface,
         elevation: 0,
-        title: const Text(
+        title: Text(
           'Instagram',
-          style: instagramLogoSmallTextStyle,
+          style: instagramLogoSmallTextStyle.copyWith(
+            color: theme.colorScheme.onSurface,
+          ),
         ),
         actions: [
-          Stack(
-            children: [
-              IconButton(
-                icon: const Icon(Icons.favorite_border, color: Colors.black, size: 28),
-                onPressed: () {},
-              ),
-              Positioned(
-                right: 8,
-                top: 8,
-                child: Container(
-                  padding: const EdgeInsets.all(4),
-                  decoration: const BoxDecoration(
-                    color: Colors.red,
-                    shape: BoxShape.circle,
-                  ),
-                  constraints: const BoxConstraints(
-                    minWidth: 18,
-                    minHeight: 18,
-                  ),
-                  child: const Text(
-                    '9',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 10,
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ),
-            ],
+          IconButton(
+            icon: Icon(
+              Icons.favorite_border,
+              size: Dimensions.iconSizeXXLarge,
+              color: theme.colorScheme.onSurface,
+            ),
+            onPressed: () {},
           ),
           IconButton(
-            icon: const Icon(Icons.send, color: Colors.black, size: 28),
+            icon: Icon(
+              Icons.send,
+              size: Dimensions.iconSizeXXLarge,
+              color: theme.colorScheme.onSurface,
+            ),
             onPressed: () {},
           ),
         ],
       ),
+
       body: Column(
         children: [
-          SizedBox(
-            height: 110,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              itemCount: stories.length,
-              itemBuilder: (context, index) {
-                return StoryItemWidget(story: stories[index]);
-
-              },
-            ),
+          GetBuilder<StoryController>(
+            init: StoryController(),
+            builder: (controller) {
+              return SizedBox(
+                height: 110,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: Dimensions.paddingSizeDefault,
+                  ),
+                  itemCount: controller.stories.length,
+                  itemBuilder: (context, index) {
+                    return StoryItemWidget(
+                      story: controller.stories[index],
+                    );
+                  },
+                ),
+              );
+            },
           ),
-          const Divider(height: 1),
+
+          Divider(height: 1, color: theme.dividerColor),
+
           Expanded(
-            child: ListView.builder(
-              itemCount: posts.length,
-              itemBuilder: (context, index) {
-
-                return PostItemWidget(post: posts[index]);
-
+            child: GetBuilder<PostController>(
+              init: PostController(),
+              builder: (controller) {
+                return ListView.builder(
+                  itemCount: controller.posts.length,
+                  itemBuilder: (context, index) {
+                    return PostItemWidget(
+                      post: controller.posts[index],
+                    );
+                  },
+                );
               },
             ),
           ),
         ],
       ),
+
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         showSelectedLabels: false,
         showUnselectedLabels: false,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.black,
+        currentIndex: 0,
+        onTap: (index) {
+          switch (index) {
+            case 0:
+              Get.toNamed(RouteHelper.getHomeScreen());
+              break;
+
+            case 1:
+            // Search
+              break;
+
+            case 2:
+            // Add
+              break;
+
+            case 3:
+            // Likes
+              break;
+
+            case 4:
+              Get.offNamed(RouteHelper.getProfileScreen());
+              break;
+          }
+        },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home, size: 28),
+            icon: Icon(Icons.home, size: Dimensions.iconSizeXXLarge),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search, size: 28),
+            icon: Icon(Icons.search, size: Dimensions.iconSizeXXLarge),
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.add_box_outlined, size: 28),
+            icon: Icon(Icons.add_box_outlined, size: Dimensions.iconSizeXXLarge),
             label: 'Add',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_border, size: 28),
+            icon: Icon(Icons.favorite_border, size: Dimensions.iconSizeXXLarge),
             label: 'Likes',
           ),
           BottomNavigationBarItem(
             icon: CircleAvatar(
-              radius: 14,
-              backgroundImage: AssetImage('assets/profile.jpg'),
+              radius: Dimensions.radiusLarge,
+              backgroundImage: AssetImage('assets/images/profile.jpeg'),
             ),
             label: 'Profile',
           ),
@@ -150,5 +146,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
 }

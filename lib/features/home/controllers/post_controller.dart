@@ -1,0 +1,112 @@
+import 'package:get/get.dart';
+import 'package:mockgram/common/models/post_model.dart';
+
+class PostController extends GetxController {
+  final List<PostModel> posts = [
+    PostModel(
+      username: 'joshua_l',
+      userImage: 'assets/images/tokyo.jpeg',
+      location: 'Tokyo, Japan',
+      postImages: [
+        'assets/images/tokyo.jpeg',
+        'assets/images/tokyo.jpeg',
+        'assets/images/tokyo.jpeg',
+      ],
+      likes: 44686,
+      likedBy: 'craig_love',
+      caption: 'The game in Japan was amazing and I want to share some photos',
+      isVerified: true,
+      timestamp: DateTime.now().subtract(const Duration(hours: 2)),
+    ),
+    PostModel(
+      username: 'joshua_l',
+      userImage: 'assets/images/tokyo.jpeg',
+      location: 'Tokyo, Japan',
+      postImages: [
+        'assets/images/tokyo.jpeg',
+        'assets/images/tokyo.jpeg',
+        'assets/images/tokyo.jpeg',
+      ],
+      likes: 44686,
+      likedBy: 'craig_love',
+      caption: 'The game in Japan was amazing and I want to share some photos',
+      isVerified: true,
+      timestamp: DateTime.now().subtract(const Duration(hours: 2)),
+    ),
+    PostModel(
+      username: 'joshua_l',
+      userImage: 'assets/images/tokyo.jpeg',
+      location: 'Tokyo, Japan',
+      postImages: [
+        'assets/images/tokyo.jpeg',
+        'assets/images/tokyo.jpeg',
+        'assets/images/tokyo.jpeg',
+      ],
+      likes: 44686,
+      likedBy: 'craig_love',
+      caption: 'The game in Japan was amazing and I want to share some photos',
+      isVerified: true,
+      timestamp: DateTime.now().subtract(const Duration(hours: 2)),
+    ),
+    PostModel(
+      username: 'joshua_l',
+      userImage: 'assets/images/tokyo.jpeg',
+      location: 'Tokyo, Japan',
+      postImages: [
+        'assets/images/tokyo.jpeg',
+        'assets/images/tokyo.jpeg',
+        'assets/images/tokyo.jpeg',
+      ],
+      likes: 44686,
+      likedBy: 'craig_love',
+      caption: 'The game in Japan was amazing and I want to share some photos',
+      isVerified: true,
+      timestamp: DateTime.now().subtract(const Duration(hours: 2)),
+    ),
+    PostModel(
+      username: 'joshua_l',
+      userImage: 'assets/images/tokyo.jpeg',
+      location: 'Tokyo, Japan',
+      postImages: [
+        'assets/images/tokyo.jpeg',
+        'assets/images/tokyo.jpeg',
+        'assets/images/tokyo.jpeg',
+      ],
+      likes: 44686,
+      likedBy: 'craig_love',
+      caption: 'The game in Japan was amazing and I want to share some photos',
+      isVerified: true,
+      timestamp: DateTime.now().subtract(const Duration(hours: 2)),
+    ),
+    PostModel(
+      username: 'joshua_l',
+      userImage: 'assets/images/tokyo.jpeg',
+      location: 'Tokyo, Japan',
+      postImages: [
+        'assets/images/tokyo.jpeg',
+        'assets/images/tokyo.jpeg',
+        'assets/images/tokyo.jpeg',
+      ],
+      likes: 44686,
+      likedBy: 'craig_love',
+      caption: 'The game in Japan was amazing and I want to share some photos',
+      isVerified: true,
+      timestamp: DateTime.now().subtract(const Duration(hours: 2)),
+    ),
+    PostModel(
+      username: 'joshua_l',
+      userImage: 'assets/images/tokyo.jpeg',
+      location: 'Tokyo, Japan',
+      postImages: [
+        'assets/images/tokyo.jpeg',
+        'assets/images/tokyo.jpeg',
+        'assets/images/tokyo.jpeg',
+      ],
+      likes: 44686,
+      likedBy: 'craig_love',
+      caption: 'The game in Japan was amazing and I want to share some photos',
+      isVerified: true,
+      timestamp: DateTime.now().subtract(const Duration(hours: 2)),
+    ),
+  ];
+}

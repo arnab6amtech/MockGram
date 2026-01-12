@@ -82,7 +82,7 @@ class _HighlightItem extends StatelessWidget {
               ),
             ),
             child: ClipOval(
-              child: Image.network(
+              child: Image.asset(
                 highlight.coverImage,
                 fit: BoxFit.cover,
               ),

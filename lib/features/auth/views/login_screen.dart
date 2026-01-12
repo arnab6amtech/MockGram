@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mockgram/features/auth/widgets/auth_button_widget.dart';
 import 'package:mockgram/features/auth/widgets/auth_text_field_widget.dart';
-import 'package:mockgram/theme/app_theme.dart';
 import 'package:mockgram/utils/dimensions.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -18,7 +17,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    _usernameController.text = 'asad_khasanov';
   }
 
   @override
@@ -57,7 +55,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
               const Spacer(flex: 1),
 
-              // App Logo Text
               Text(
                 'Instagram',
                 style: textTheme.headlineLarge?.copyWith(
@@ -72,7 +69,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
               const SizedBox(height: Dimensions.spacingMedium2),
 
-              // Password TextField
               AuthTextFieldWidget(
                 controller: _passwordController,
                 hintText: 'Password',
@@ -81,7 +77,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
               const SizedBox(height: Dimensions.spacingLarge),
 
-              // Forgot password
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
@@ -97,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
               const SizedBox(height: Dimensions.spacingLarge),
 
-              // Login button
+
               AuthButtonWidget(
                 text: 'Log in',
                 onPressed: () {},
@@ -105,7 +100,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
               const SizedBox(height: Dimensions.spacingExtraLarge),
 
-              // Facebook login
               SizedBox(
                 width: double.infinity,
                 child: TextButton.icon(
@@ -126,7 +120,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
               const SizedBox(height: Dimensions.spacingExtraLarge),
 
-              // Divider with OR
               Row(
                 children: [
                   const Expanded(child: Divider()),
@@ -147,7 +140,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
               const SizedBox(height: Dimensions.spacingExtraLarge),
 
-              // Sign up link
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
